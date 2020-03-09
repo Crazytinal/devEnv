@@ -1,6 +1,6 @@
 FROM debian
 
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+RUN sed -i -e 's/deb.debian.org/mirrors.ustc.edu.cn/g' -e 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt update && apt install -y git  zsh curl wget vim tar g++ python
 RUN apt-get update -y && apt-get install -y libncurses5-dev libx11-dev libxpm-dev libxt-dev libatk1.0-dev gettext gawk make ripgrep    python-dev python3-dev
 RUN apt update && apt install -y pkg-config autoconf automake python3-docutils libseccomp-dev \
@@ -48,3 +48,4 @@ WORKDIR /tmp/ohtojump
 RUN export SHELL=/bin/zsh; sh install.sh
 RUN echo "[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
 
+WORKDIR $HOME
